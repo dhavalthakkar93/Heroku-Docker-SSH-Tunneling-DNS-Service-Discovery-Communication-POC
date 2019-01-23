@@ -1,6 +1,6 @@
 # Heroku-Docker-Communication 
 
-This proof of concept app is intended to demonstrate Nginx Reverse Proxy using the Docker Container and SSH Tunneling of Docker Container in Heroku Private Spaces.  
+This proof of concept app is intended to demonstrate Nginx Reverse Proxy with the Docker Container and SSH Tunneling of Docker Container in Heroku Private Spaces.  
 
 First clone the code
 
