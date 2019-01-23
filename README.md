@@ -58,4 +58,9 @@ Hello World From Frontend
 Hello World From Backend
 ```
 
+Here `front` and `back` is dyno name (AKA Docker Container tag) `docker-ssh-tunneling-poc` is `Heroku Application Name`
+
+# PORT Configuration 
+
+We can set the static port for the each process at application level, In Heroku all ports on dyno can be reachable from inside the space
 
