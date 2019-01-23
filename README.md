@@ -1,62 +1,69 @@
-# Heroku-Docker-SSH-Tunneling-POC-Private-Spaces
+# Heroku-Docker-Communication 
 
-This proof of concept app is intended to demonstrate SSH Tunneling for Docker Containers in Heroku Private Spaces.  
+This proof of concept app is intended to demonstrate Nginx Reverse Proxy with the Docker Container and SSH Tunneling of Docker Container in Heroku Private Spaces.  
 
 First clone the code
 
 ```
-git clone https://github.com/dhavalthakkar93/Heroku-Docker-SSH-Tunneling-POC-Private-Spaces
+git clone https://github.com/dhavalthakkar93/Heroku-Docker-Communication-POC
 ```
 
 Create Heroku App
 
 ```
-heroku create
+heroku create -a docker-ssh-tunneling-poc
 
-Creating app... done, ⬢ still-reaches-17754
-https://still-reaches-17754.herokuapp.com/ | https://git.heroku.com/still-reaches-17754.git
+Creating app... done, ⬢ docker-ssh-tunneling-poc
+https://docker-ssh-tunneling-poc.herokuapp.com/ | https://git.heroku.com/docker-ssh-tunneling-poc.git
 ```
 
-# Build Image 
+# Build Images 
 
-- `docker build -t "Heroku-Docker-Exec" .`
+- `docker build -t back backend-container/.`
+- `docker build -t front frontend-container/.`
+- `docker build -t web web-container-nginx/.`
+- `docker build -t debug .`
 
-# Deploy 
+# Deploy Images to Heroku
+
+- `heroku container:push back -a <APP_NAME>`
+-  `heroku container:release back -a <APP_NAME>`
+
+- `heroku container:push front -a <APP_NAME>`
+- `heroku container:release front -a <APP_NAME>`
 
 - `heroku container:push web -a <APP_NAME>`
 - `heroku container:release web -a <APP_NAME>`
 
-# Scale Dynos (Optional)
+- `heroku container:push debug -a <APP_NAME>`
+- `heroku container:release debug -a <APP_NAME>`
+
+# SSH into debug Dyno
 
 ```
-heroku ps:scale web=3
-
-Scaling dynos... done, now running web at 2:Standard-1X
-```
-
-# Check Dynos are up
-
-```
-heroku ps -a <APP_NAME>
-
-=== web (Standard-1X): /bin/sh -c bash /heroku-exec.sh && gunicorn --bind 0.0.0.0:$PORT wsgi (3)
-web.1: up 2019/01/13 00:48:24 +0530 (~ 12m ago)
-web.2: up 2019/01/13 00:48:31 +0530 (~ 12m ago)
-web.3: up 2019/01/13 00:48:31 +0530 (~ 12m ago)
-```
-# SSH into Dyno
-
-```
-heroku ps:exec --dyno=web.3 -a <APP_NAME>
+heroku ps:exec --dyno=debug.1 -a <APP_NAME>
 
 Establishing credentials... done
-Connecting to web.3 on ⬢ exec-docker... 
+Connecting to debug.1 on ⬢ docker-ssh-tunneling-poc... 
 ~ $ 
 ```
 
+# CURL to Frontend & Backend Container
 
+```
+~ $ curl -L front.docker-ssh-tunneling-poc.app.localspace:9393
+Hello World From Frontend
 
+~ $ curl -L back.docker-ssh-tunneling-poc.app.localspace:4000
+Hello World From Backend
+```
 
+Here `front` and `back` is dyno name (AKA Docker Container tag) `docker-ssh-tunneling-poc` is `Heroku Application Name`
 
+# PORT Configuration 
+
+We can set the static port for the each process at application level, In Heroku all ports on dyno can be reachable from inside the space so no need of `EXPOSE` in `Dockerfile`.
+
+Here in this POC frontend has port `9393` and backend has port `4000` (check server.js).
 
 
