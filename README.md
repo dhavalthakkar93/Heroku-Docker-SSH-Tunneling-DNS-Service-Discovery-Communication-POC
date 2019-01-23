@@ -38,7 +38,15 @@ https://still-reaches-17754.herokuapp.com/ | https://git.heroku.com/still-reache
 - `heroku container:push debug -a <APP_NAME>`
 - `heroku container:release debug -a <APP_NAME>`
 
+# SSH into debug Dyno
 
+```
+heroku ps:exec --dyno=debug.1 -a <APP_NAME>
+
+Establishing credentials... done
+Connecting to debug.1 on ⬢ docker-ssh-tunneling-poc... 
+~ $ 
+```
 
 
 
