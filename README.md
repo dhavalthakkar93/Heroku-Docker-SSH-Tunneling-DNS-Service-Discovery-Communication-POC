@@ -11,10 +11,10 @@ git clone https://github.com/dhavalthakkar93/Heroku-Docker-Communication-POC
 Create Heroku App
 
 ```
-heroku create
+heroku create -a docker-ssh-tunneling-poc
 
-Creating app... done, ⬢ still-reaches-17754
-https://still-reaches-17754.herokuapp.com/ | https://git.heroku.com/still-reaches-17754.git
+Creating app... done, ⬢ docker-ssh-tunneling-poc
+https://docker-ssh-tunneling-poc.herokuapp.com/ | https://git.heroku.com/docker-ssh-tunneling-poc.git
 ```
 
 # Build Images 
