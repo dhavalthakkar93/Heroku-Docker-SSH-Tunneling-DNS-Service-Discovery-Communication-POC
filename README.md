@@ -62,7 +62,7 @@ Here `front` and `back` is dyno name (AKA Docker Container tag) `docker-ssh-tunn
 
 # PORT Configuration 
 
-We can set the static port for the each process at application level, In Heroku all ports on dyno can be reachable from inside the space so no need of `EXPOSE` in `Dockerfile`.
+We can set the static port for the each process at application level, In Heroku Private Space all ports on dyno can be reachable from inside the space so no need of `EXPOSE` in `Dockerfile`.
 
 Here in this POC frontend has port `9393` and backend has port `4000` (check server.js).
 
