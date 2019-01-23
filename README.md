@@ -24,6 +24,20 @@ https://still-reaches-17754.herokuapp.com/ | https://git.heroku.com/still-reache
 - `docker build -t web web-container-nginx/.`
 - `docker build -t debug .`
 
+# Deploy Images to Heroku
+
+- `heroku container:push back -a <APP_NAME>`
+- `heroku container:release back -a <APP_NAME>`
+
+- `heroku container:push front -a <APP_NAME>`
+- `heroku container:release front -a <APP_NAME>`
+
+- `heroku container:push web -a <APP_NAME>`
+- `heroku container:release web -a <APP_NAME>`
+
+- `heroku container:push debug -a <APP_NAME>`
+- `heroku container:release debug -a <APP_NAME>`
+
 
 
 
