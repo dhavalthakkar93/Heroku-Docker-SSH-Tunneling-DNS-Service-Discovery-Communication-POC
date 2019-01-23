@@ -48,7 +48,14 @@ Connecting to debug.1 on ⬢ docker-ssh-tunneling-poc...
 ~ $ 
 ```
 
+# CURL to Frontend & Backend Container
 
+```
+~ $ curl -L front.docker-ssh-tunneling-poc.app.localspace:9393
+Hello World From Frontend
 
+~ $ curl -L back.docker-ssh-tunneling-poc.app.localspace:4000
+Hello World From Backend
+```
 
 
