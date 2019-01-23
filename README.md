@@ -19,10 +19,10 @@ https://still-reaches-17754.herokuapp.com/ | https://git.heroku.com/still-reache
 
 # Build Images 
 
-- `docker build -t back backend-container/.'
-- `docker build -t front frontend-container/.'
-- `docker build -t web web-container-nginx/.'
-- `docker build -t debug .'
+- `docker build -t back backend-container/.`
+- `docker build -t front frontend-container/.`
+- `docker build -t web web-container-nginx/.`
+- `docker build -t debug .`
 
 
 
